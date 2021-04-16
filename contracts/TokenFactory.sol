@@ -1,24 +1,19 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-
 import "./Token.sol";
 
-
   contract TokenFactory {
-    Token[] public tokens;
+    mapping(uint256 => Token) tokens;
+    mapping(address => bool) tokenAddress;
+    
     uint256 private _totalTokens;
     
     event TokenCreated(address owner, Token token);
     
     
     function isPresent(Token token) internal view returns (bool) {
-        for(uint256 i = 0; i < tokens.length; ++i) {
-            if(tokens[i] == token) {
-                return true;
-            }
-        }
-        return false;
+        return (tokenAddress[address(token)]);
     }
     
     modifier isValidToken(address token) {
@@ -29,7 +24,8 @@ import "./Token.sol";
     
     function createToken(address _minter, address _burner, uint256 _cap) external {
         Token token  = new Token(_minter, _burner, _cap);
-        tokens.push(token);
+        tokens[_totalTokens] = token;
+        tokenAddress[address(token)] = true;
         _totalTokens++;
         emit TokenCreated(msg.sender, token);
     }
@@ -45,11 +41,11 @@ import "./Token.sol";
     
     function pause(address token) public isValidToken(token) {
         Token myToken = Token(token);
-        myToken.pausable();
+        myToken.pause();
     }
     
     function unpause(address token) public isValidToken(token) {
         Token myToken = Token(token);
-        myToken.unpausable();
+        myToken.unpause();
     }
 }

@@ -19,22 +19,23 @@ import "../interface/IToken.sol";
   }
   
 
-  function mintable (address to, uint256 amount) public whenNotPaused {
+  function mint(address to, uint256 amount) external whenNotPaused {
     require(hasRole(MINTER_ROLE, msg.sender), "Require role to be Minter");
     super._mint(to, amount);
   }
 
-  function burnable (address from, uint256 amount) public whenNotPaused {
+  function burn (address from, uint256 amount) external whenNotPaused {
     require(hasRole(BURNER_ROLE, msg.sender), "Require role to be Burnable");
     super._burn(from, amount);
   }
   
-  function pausable() external {
+  function pause() external {
       require(hasRole(DEFAULT_ADMIN_ROLE, msg.sender), "Require role to be Owner");
       super._pause();
   }
   
-  function unpausable() external {
+  
+  function unpause() external {
       require(hasRole(DEFAULT_ADMIN_ROLE, msg.sender), "Require role to be Owner");
       super._unpause();
   }
