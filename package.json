@@ -1,0 +1,29 @@
+{
+  "name": "openzeppelin-accesscontrol",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manmeet2018/openZeppelin-AccessControl.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Manmeet2018/openZeppelin-AccessControl/issues"
+  },
+  "homepage": "https://github.com/Manmeet2018/openZeppelin-AccessControl#readme",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.0.0",
+    "web3": "^1.3.5"
+  },
+  "devDependencies": {
+    "@openzeppelin/hardhat-upgrades": "^1.6.0"
+  }
+}
