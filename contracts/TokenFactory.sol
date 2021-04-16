@@ -30,7 +30,7 @@ import "./Token.sol";
         emit TokenCreated(msg.sender, token);
     }
     
-    function deployedTotalSupply() public view returns (uint256) {
+    function deployedTotalSupply() external view returns (uint256) {
         uint256 totalDeployedTokens = 0;
         for(uint256 i = 0; i < _totalTokens; ++i) {
             Token myToken = Token(tokens[i]);
@@ -39,12 +39,12 @@ import "./Token.sol";
         return totalDeployedTokens;
     }
     
-    function pause(address token) public isValidToken(token) {
+    function pause(address token) external isValidToken(token) {
         Token myToken = Token(token);
         myToken.pause();
     }
     
-    function unpause(address token) public isValidToken(token) {
+    function unpause(address token) external isValidToken(token) {
         Token myToken = Token(token);
         myToken.unpause();
     }
